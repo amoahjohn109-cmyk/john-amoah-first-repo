@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sample Test</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;margin:2rem;background:#f7f7fb;}
+    .card{max-width:720px;margin:auto;background:#fff;padding:1.5rem;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08);}
+    h1{margin:0 0 1rem;}
+    .q{margin:1rem 0;padding:.75rem;border:1px solid #e6e6ef;border-radius:8px;}
+    button{padding:.6rem 1rem;border:0;border-radius:8px;cursor:pointer;}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Sample Test</h1>
+    <p>Choose the best answer, then click <em>Grade</em>.</p>
+    <ol id="quiz">
+      <li class="q">HTML stands for:
+        <label><input type="radio" name="q1" value="0"> Hyperlink and Text Markup Language</label>
+        <label><input type="radio" name="q1" value="1"> HyperText Markup Language</label>
+        <label><input type="radio" name="q1" value="0"> Home Tool Markup Language</label>
+      </li>
+      <li class="q">CSS is used for:
+        <label><input type="radio" name="q2" value="1"> Styling and layout</label>
+        <label><input type="radio" name="q2" value="0"> Database queries</label>
+        <label><input type="radio" name="q2" value="0"> Operating systems</label>
+      </li>
+      <li class="q">Which tag links scripts?
+        <label><input type="radio" name="q3" value="0"> &lt;style&gt;</label>
+        <label><input type="radio" name="q3" value="1"> &lt;script&gt;</label>
+        <label><input type="radio" name="q3" value="0"> &lt;link&gt;</label>
+      </li>
+    </ol>
+    <p id="score">Score: 0/3</p>
+    <button id="grade">Grade</button>
+  </div>
+  <script>
+    const key = {q1:1, q2:1, q3:1};
+    document.getElementById('grade').addEventListener('click', () => {
+      let score = 0;
+      for (const id in key){
+        const chosen = document.querySelector(`input[name="${id}"]:checked`);
+        if (chosen && chosen.value === '1') score++;
+      }
+      document.getElementById('score').textContent = `Score: ${score}/3`;
+    });
+  </script>
+</body>
+</html>
